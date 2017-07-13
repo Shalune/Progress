@@ -1,12 +1,13 @@
 import os
 from tkinter import *
 
-dirSortFrom = 'C:\\Users\\Tyler E Main\\Desktop\\album\\unsorted\\'
-dirAlbum = 'C:\\Users\\Tyler E Main\\Desktop\\album\\'
+baseDir = 'C:'
+dirAlbum = os.path.join(os.environ["HOMEPATH"], 'Desktop\\album\\')
+dirSortFrom = os.path.join(dirAlbum, 'unsorted\\')
 dirAlbumFolders = ['_art ref', '_mystuff', 'camera dump',
                    'characters', 'design', 'funny', 'gifs and stuff',
-                   'HS', 'moments - feelings', 'my designs', 'narrative',
-                   'scans', 'setting', 'stories', 'style']
+                   'HS', 'informative', 'moments - feelings', 'my designs', 'narrative',
+                   'scans', 'setting', 'stories', 'style', 'other']
 startButtonText = "Start"
 currentImageFile = ''
 currentImageIndex = -1
@@ -67,7 +68,7 @@ def folderButtonFn(imageFile, targetDir, imageFiles):
 def moveImage(imageFile, targetDir):
     oldFilePath = imageFile
     newFilePath = imageFile.replace(dirSortFrom, targetDir)
-    os.rename(oldFilePath, newFilePath)
+    os.rename(baseDir + oldFilePath, baseDir + newFilePath)
 
 
 window = Tk()

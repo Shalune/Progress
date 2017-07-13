@@ -1,8 +1,10 @@
 from tkinter import *
 import os
 
-desktop = 'C:\\Users\\Tyler E Main\\Desktop\\'
-placeInto = 'C:\\Users\\Tyler E Main\\Desktop\\album\\unsorted\\'
+baseDir = 'C:'
+desktop = baseDir +  os.path.join(os.environ["HOMEPATH"], "Desktop")
+album = os.path.join(desktop, 'album\\')
+placeInto = os.path.join(album, 'unsorted\\')
 
 
 def cleanButton():
@@ -13,14 +15,25 @@ def cleanButton():
 
 def gatherImages():
     images = []
-    for file in os.listdir(desktop):
-        if file.endswith(".png") or file.endswith(".jpg") or file.endswith(".bmp") or file.endswith(".gif"):
-            images.append(desktop+file)
+    images = addImagesInDir(images, desktop)
+    images = addImagesInDir(images, album)
     return images
 
 
+def addImagesInDir(images, dir):
+    for file in os.listdir(dir):
+        if isImage(file):
+            images.append(dir+file)
+    return images
+
+
+def isImage(file):
+    if file.endswith(".png") or file.endswith(".jpg") or file.endswith(".bmp") or file.endswith(".gif"):
+        return True
+    return False
+
+
 def moveImages(images):
-    #
     for image in images:
         moveFile(image)
     return
@@ -28,9 +41,13 @@ def moveImages(images):
 
 def moveFile(image):
     oldFilePath = image
-    newFilePath = image.replace(desktop,placeInto)
+    newFilePath = image.replace(oldImageDir(image),placeInto)
     os.rename(oldFilePath, newFilePath)
     return
+
+
+def oldImageDir(image):
+    return image[:image.rfind('\\')]
 
 
 window = Tk()
