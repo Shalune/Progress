@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "pythonscience-173904",
+  "private_key_id": "adbbc0161222bb311f903ed02979f4cfda5a381e",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCoq4HW1b/ax9FM\nI5KUX+KoP4oA6x6DSS8n9VbieZOolKjUzWgGqKKNDsiiVo4gC3z6/IWpddKDV6+y\nhV83GKvOr09dctTRLrYIHAWD9OqQWH+ImH85ejAva2++rees/I2yD1lRaW7ePmt9\nOKgxqO13Iui9JiSMiBn/Lo4WQDfqZH7CiZGH7VC/kiRcpkPZ6KWBk1s4QIGqiKW6\nNr2kNj+8CSd6toTz2KWlbOoBlFgzM91BAnwzNttmB3Ax9HOrhzEO8etiOY/Nz6Qz\nqTKeNoX4TJLVPlZI2E7BGwy4RD1CRryORmmpLPddUSo7z8uzsxztKuIock14+jkr\n7c8FL7VrAgMBAAECggEABsth35WctON3uulz7iYuqzhkBsVx5Tf9fk6TwWvEVvYm\nFuxvVFVWtvfxfRifgQr1bebeO4VThZbyrO5Sd5W21gyZ1dnaWNLY4lq+niIvkMD/\n4jDCbz5M0pwxVC0NOBq0WofjwTPOE4XQLqspm1aCulndpkDzF/YjlfP6JUtQ9VAm\nRdhsm883WOvJQ8hUkiUARokqKOho9FIiZEHTSCJGjOqCt0BN6hIVs20MW/rt8ve7\nbRiYoUTtRpXH+Ci1mmTbDP446I8ApcxdHO3QCAtCbqE7m4pGgbFs65PD02KNcR2A\nmVT0YHHSi10Uw8KlCm/7jOrbh9iYzA6WbCLBMUhqAQKBgQDcYPWvFqyaEZkOyyVE\n1UTOqPp7pX4vT8IePVone1lNxu94DDAjn7ruNYjQ9k2XC69rDNg09BVtag8C+O4J\n99DU8l+0TsmvRrh6RbLbRh/9k2yUWJ1Jg2aITfsB4eToCE1hdbg4KOJQJdlrpuRc\nkn7WCFEqd6aYc9SxQgdj4FN8+wKBgQDD7uRTSt6pengYtpXoR/p9Sn5uHJhADa0N\n2YstPgueQQWNIKgDO0q7jqecDB8A+GvHEaRK8cqvlUYkgFQ0pkk5zItv0w7KV0iH\nq7062VIGqMlHuJFWFVqjDjXSSh4Wz2jmEc+URkjP1DUEUXxsT0M2ILz4l5I9GibX\njXiFINNeUQKBgCzts4jjlYK/jbW/YrS6yhFbz90/aw9YMloZ5fRgqF877HxL99B7\ncw+3aFI5tK3Tmwq3DqkVDf1FfxP7DgSIOlH/q9VFrsaGI3wCE6myjTkUQjGoM0DW\ngiPNyhujIxjPAH+bEViZtTHj1YSl/K6Gy0b1YR7IT/WKv9T3giwxgrPbAoGAKf+r\nMa96yxlVZPa+a2wCZZjyQOggOpqz3aQkES6bjvChH/9ABHFRM6MAipKOksatU56U\nePwbVkfJIUngwuhiCeGugenb4cOT6IEHrvWmf4bunlER1kH9i7YgE1OP35PWCHsI\n49+s+9+g/av5372dypx55U+YKUDR0qKgkujWZgECgYEAke2K6ncb8PKg0mr2siLM\nvrq5dPbaLjwwB9bLazDX8uBn3zP5XGs74vfsM8phzS0bpgDzhxuiXsoyRXKqSAPc\n57Wu6sKlTj1Dbp50X55E07CsffbmuaJj+Z0yklyGRgVjzVV6Zh1QAgQ7ggOU65zw\nTaQlVR2iLyCeGNJCPsURkQo=\n-----END PRIVATE KEY-----\n",
+  "client_email": "pythonscience@pythonscience-173904.iam.gserviceaccount.com",
+  "client_id": "114646674700488188120",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://accounts.google.com/o/oauth2/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/pythonscience%40pythonscience-173904.iam.gserviceaccount.com"
+}
