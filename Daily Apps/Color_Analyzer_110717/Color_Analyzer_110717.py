@@ -13,6 +13,7 @@ saturationPrefix = 'saturation = '
 colorNameVectorPairs = {'Red' : lambda: redVector(), 'Blue' : lambda: blueVector(), 'Green' : lambda: greenVector(),
                         'Purple' : lambda: purpleVector(), 'Orange' : lambda: orangeVector(), 'Yellow' : lambda: yellowVector()}
 RGBscale = 255
+colorLoaded = False
 
 
 def main():

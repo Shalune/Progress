@@ -23,7 +23,7 @@ def gatherImages():
 def addImagesInDir(images, dir):
     for file in os.listdir(dir):
         if isImage(file):
-            images.append(dir+file)
+            images.append(dir+'\\'+file)
     return images
 
 
@@ -41,6 +41,7 @@ def moveImages(images):
 
 def moveFile(image):
     oldFilePath = image
+    print(oldFilePath)
     newFilePath = image.replace(oldImageDir(image),placeInto)
     os.rename(oldFilePath, newFilePath)
     return
