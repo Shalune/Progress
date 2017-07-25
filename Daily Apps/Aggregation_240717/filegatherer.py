@@ -13,6 +13,25 @@ FileTypes = {'Images' : [".png", ".jpg", ".bmp", ".gif"],
             'Documents' : [".doc", ".docx", ".txt", ".pdf"]}
 
 
+def main():
+    window = Tk()
+    fromFolder = Entry(window, text="Pull from...")
+    toFolder = Entry(window, text="Move to...")
+
+    dropDownVar = StringVar(window)
+    dropDownVar.set(FileOptions[0])
+    dropDown = OptionMenu(window, dropDownVar, *FileOptions)
+
+    button = Button(window, text="press")
+    button['command'] = lambda: cleanButton(fromFolder, toFolder, dropDownVar)
+
+    fromFolder.pack()
+    toFolder.pack()
+    dropDown.pack()
+    button.pack()
+    window.mainloop()
+
+
 def cleanButton(fromFolderInput, toFolderInput, fileTypeDropDown):
     files = gatherFiles(fromFolderInput, fileTypeDropDown)
     toFolder = toFolderInput.get()
@@ -56,19 +75,5 @@ def oldImageDir(image):
     return image[:image.rfind('\\')]
 
 
-window = Tk()
-fromFolder = Entry(window, text="Pull from...")
-toFolder = Entry(window, text="Move to...")
-
-dropDownVar = StringVar(window)
-dropDownVar.set(FileOptions[0])
-dropDown = OptionMenu(window, dropDownVar, *FileOptions)
-
-button = Button(window, text="press")
-button['command'] = lambda: cleanButton(fromFolder, toFolder, dropDownVar)
-
-fromFolder.pack()
-toFolder.pack()
-dropDown.pack()
-button.pack()
-window.mainloop()
+if __name__ == "__main__":
+    main()

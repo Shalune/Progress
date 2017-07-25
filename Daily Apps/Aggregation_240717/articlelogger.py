@@ -8,6 +8,16 @@ targetDir = 'C:' + os.path.join(os.environ["HOMEPATH"], 'Desktop\\notebook\\_log
 newsLogFile = '_log news.txt'
 
 
+def main():
+    window = Tk()
+    inputEntry = Entry(window)
+    newsButton = Button(window, text="News")
+    newsButton['command'] = lambda: logNews(inputEntry)
+
+    inputEntry.pack()
+    newsButton.pack()
+    window.mainloop()
+
 
 def logNews(inputEntry):
     inputString = inputEntry.get()
@@ -72,11 +82,5 @@ def isWebAddress(inputString):
 def dateLine(webAddress):
     return 'date saved: ' + time.strftime("%d/%m/%Y")
 
-window = Tk()
-inputEntry = Entry(window)
-newsButton = Button(window, text="News")
-newsButton['command'] = lambda: logNews(inputEntry)
-
-inputEntry.pack()
-newsButton.pack()
-window.mainloop()
+if __name__ == "__main__":
+    main()

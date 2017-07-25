@@ -14,6 +14,14 @@ currentImageIndex = -1
 folderButtons = []
 
 
+def main():
+    window = Tk()
+    startButton = Button(window, text=startButtonText)
+    startButton['command'] = lambda: runApp(window, startButton)
+    startButton.pack()
+    window.mainloop()
+
+
 def openImage(imageName):
     os.startfile(imageName)
 
@@ -71,8 +79,5 @@ def moveImage(imageFile, targetDir):
     os.rename(baseDir + oldFilePath, baseDir + newFilePath)
 
 
-window = Tk()
-startButton = Button(window, text=startButtonText)
-startButton['command'] = lambda: runApp(window, startButton)
-startButton.pack()
-window.mainloop()
+if __name__ == "__main__":
+    main()
