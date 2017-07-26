@@ -8,6 +8,7 @@ def runTests():
     llTests()
 
 
+
 def nodeTests():
     createNodeTest()
     nextNodeLoopTest()
@@ -34,6 +35,7 @@ def nextNodeLoopTest():
 
 def llTests():
     getElementTest()
+    appendTest()
 
 
 def getElementTest():
@@ -45,12 +47,27 @@ def getElementTest():
         val = random.randint(0,size-1)
         myTest(testDescription + str(val), list.getElement(val).value == val)
 
+
+def appendTest():
+    testDescription = "append new node test "
+    size = 5
+
+    for i in range(1,10):
+        head = testableListHead(size)
+        list = linkedlist.LinkedList(head)
+        val = random.randint(50,999)
+        newTail = linkedlist.Node(val)
+        list.append(newTail)
+        myTest(testDescription, list.getElement(size) == newTail)
+
+
 def testableListHead(size):
     index = 0
     head = prevNode = linkedlist.Node(index)
+    index = 1
     while (index < size):
-        index += 1
         prevNode.next = linkedlist.Node(index)
+        index += 1
         prevNode = prevNode.next
     return head
 
