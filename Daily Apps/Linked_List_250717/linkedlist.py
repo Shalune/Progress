@@ -25,7 +25,23 @@ class LinkedList:
                 return
             currentNode = currentNode.next
 
-    
+    def InsertNode(self, newNode, insertAt):
+        currentNode = self.head
+        index = 0
+        while (True):
+            if (currentNode == None):
+                return
+            if (index == insertAt):
+                self.InsertAfter(newNode, currentNode)
+                return
+            currentNode = currentNode.next
+            index += 1
+
+    def InsertAfter(self, newNode, afterNode):
+        oldNext = afterNode.next
+        afterNode.next = newNode
+        newNode.next = oldNext
+
 
 class Node:
     value = 0
