@@ -33,12 +33,17 @@ def nextNodeLoopTest():
 
 
 def llTests():
-    return
+    getElementTest()
 
 
 def getElementTest():
-    return
-
+    testDescription = "from linked list get element numnber "
+    size = 5
+    head = testableListHead(size)
+    list = linkedlist.LinkedList(head)
+    for i in range(1,10):
+        val = random.randint(0,size-1)
+        myTest(testDescription + str(val), list.getElement(val).value == val)
 
 def testableListHead(size):
     index = 0
