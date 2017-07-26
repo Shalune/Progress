@@ -42,6 +42,10 @@ class LinkedList:
         afterNode.next = newNode
         newNode.next = oldNext
 
+    def NewHead(self, newNode):
+        newNode.next = self.head
+        self.head = newNode
+
 
 class Node:
     value = 0
