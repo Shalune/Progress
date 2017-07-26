@@ -36,6 +36,7 @@ def nextNodeLoopTest():
 def llTests():
     getElementTest()
     appendTest()
+    insertNodeTest()
 
 
 def getElementTest():
@@ -59,6 +60,20 @@ def appendTest():
         newTail = linkedlist.Node(val)
         list.append(newTail)
         myTest(testDescription, list.getElement(size) == newTail)
+
+
+def insertNodeTest():
+    testDescription = "insert new node test at index "
+    size = 5
+    testVal = 91
+    newNode = linkedlist.Node(testVal)
+
+    for i in range(1, 10):
+        head = testableListHead(size)
+        list = linkedlist.LinkedList(head)
+        atIndex = random.randint(0, size - 1)
+        list.insertNode(newNode,atIndex)
+        myTest(testDescription + str(atIndex), list.getElement(atIndex).value == testVal)
 
 
 def testableListHead(size):

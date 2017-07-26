@@ -31,10 +31,14 @@ class LinkedList:
     def insertNode(self, newNode, insertAt):
         currentNode = self.head
         index = 0
+
+        if index == insertAt:
+            self.newHead(newNode)
+
         while (True):
             if (currentNode == None):
                 return
-            if (index == insertAt):
+            if (index + 1 == insertAt):
                 self.insertAfter(newNode, currentNode)
                 return
             currentNode = currentNode.next
