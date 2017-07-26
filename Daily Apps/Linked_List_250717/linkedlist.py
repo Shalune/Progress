@@ -5,6 +5,7 @@ class LinkedList:
     def __init__(self, head):
         self.head = head
 
+
     def getElement(self, elementNum):
         currentNode = self.head
         index = 0
@@ -17,6 +18,7 @@ class LinkedList:
             index += 1
         return None
 
+
     def append(self, newNode):
         currentNode = self.head
         while (True):
@@ -24,6 +26,7 @@ class LinkedList:
                 currentNode.next = newNode
                 return
             currentNode = currentNode.next
+
 
     def insertNode(self, newNode, insertAt):
         currentNode = self.head
@@ -37,10 +40,12 @@ class LinkedList:
             currentNode = currentNode.next
             index += 1
 
+
     def insertAfter(self, newNode, afterNode):
         oldNext = afterNode.next
         afterNode.next = newNode
         newNode.next = oldNext
+
 
     def newHead(self, newNode):
         newNode.next = self.head

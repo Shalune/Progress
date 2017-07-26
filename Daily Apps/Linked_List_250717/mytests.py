@@ -5,7 +5,7 @@ import random
 
 def runTests():
     nodeTests()
-    #llTests()
+    llTests()
 
 
 def nodeTests():
@@ -13,25 +13,41 @@ def nodeTests():
     nextNodeLoopTest()
 
 def createNodeTest():
+    testDesctiption = "node creation with random value = "
     for i in range(1,30):
         val = random.randint(0,999)
         newNode = linkedlist.Node(val)
-        myTest("node creation with random value = " + str(val), newNode.value == val)
+        myTest(testDesctiption + str(val), newNode.value == val)
 
 
 def nextNodeLoopTest():
+    testDescription = "node link loop, at index "
+    size = 5
+    currentNode = testableListHead(size)
+
     index = 0
-    currentNode = prevNode = linkedlist.Node(index)
-    while(index<5):
+    while(index < size):
+        myTest(testDescription + str(index), currentNode.value == index)
+        currentNode = currentNode.next
+        index+=1
+
+
+def llTests():
+    return
+
+
+def getElementTest():
+    return
+
+
+def testableListHead(size):
+    index = 0
+    head = prevNode = linkedlist.Node(index)
+    while (index < size):
         index += 1
         prevNode.next = linkedlist.Node(index)
         prevNode = prevNode.next
-
-    index = 0
-    while(index<5):
-        myTest("node link loop test, at index " + str(index), currentNode.value == index)
-        currentNode = currentNode.next
-        index+=1
+    return head
 
 
 def myTest(description, conditional):
