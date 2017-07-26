@@ -4,14 +4,34 @@ import random
 
 
 def runTests():
-    nodeTest()
+    nodeTests()
+    #llTests()
 
 
-def nodeTest():
+def nodeTests():
+    createNodeTest()
+    nextNodeLoopTest()
+
+def createNodeTest():
     for i in range(1,30):
         val = random.randint(0,999)
         newNode = linkedlist.Node(val)
         myTest("node creation with random value = " + str(val), newNode.value == val)
+
+
+def nextNodeLoopTest():
+    index = 0
+    currentNode = prevNode = linkedlist.Node(index)
+    while(index<5):
+        index += 1
+        prevNode.next = linkedlist.Node(index)
+        prevNode = prevNode.next
+
+    index = 0
+    while(index<5):
+        myTest("node link loop test, at index " + str(index), currentNode.value == index)
+        currentNode = currentNode.next
+        index+=1
 
 
 def myTest(description, conditional):
