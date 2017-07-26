@@ -37,6 +37,7 @@ def llTests():
     getElementTest()
     appendTest()
     insertNodeTest()
+    insertAfterTest()
 
 
 def getElementTest():
@@ -75,6 +76,20 @@ def insertNodeTest():
         list.insertNode(newNode,atIndex)
         myTest(testDescription + str(atIndex), list.getElement(atIndex).value == testVal)
 
+
+def insertAfterTest():
+    testDescription = "insert after node test at index "
+    size = 5
+    testVal = 91
+    newNode = linkedlist.Node(testVal)
+
+    for i in range(1, 10):
+        head = testableListHead(size)
+        list = linkedlist.LinkedList(head)
+        val = random.randint(0, size - 1)
+        oldNode = list.getElement(val)
+        list.insertAfter(newNode, oldNode)
+        myTest(testDescription + str(val), list.getElement(val+1).value == testVal)
 
 def testableListHead(size):
     index = 0
