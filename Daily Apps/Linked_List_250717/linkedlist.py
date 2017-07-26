@@ -17,6 +17,16 @@ class LinkedList:
             index += 1
         return None
 
+    def Append(self, newNode):
+        currentNode = self.head
+        while (True):
+            if (currentNode.next == None):
+                currentNode.next = newNode
+                return
+            currentNode = currentNode.next
+
+    
+
 class Node:
     value = 0
     next = None
