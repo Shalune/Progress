@@ -8,9 +8,12 @@ class Card:
 
 
     def __init__(self, suit, type):
-        #validate input
-        self.suit = suit
-        self.type = type
+        if self.validateType(type) and self.validateSuit(suit):
+            self.suit = cardsuits[suit]
+            self.type = type
+        else:
+            print("Attempted to create card with invalid parameters. Type input: "
+                  + str(type) + "  Suit input: " + str(suit))
 
 
     def validateType(self, type):
@@ -28,6 +31,8 @@ class Card:
 
 
     def specialType(self, type):
-        if type in cardvalues:
-            return True
-        return False
+        return type in cardvalues
+
+
+    def validateSuit(self, suit):
+        return suit in cardsuits
