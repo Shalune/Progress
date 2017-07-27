@@ -39,3 +39,6 @@ class Card:
 
     def validateSuit(self, suit):
         return suit in cardsuits
+
+    def name(self):
+        return str(type) + " of " + cardsuits[self.suit]
