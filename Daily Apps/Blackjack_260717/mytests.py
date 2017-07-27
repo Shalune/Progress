@@ -13,6 +13,7 @@ def tValidateTypes():
 
     for i in range(-1,15):
         types.add(str(i))
+        #types.add(i)
 
     for tType in types:
         myTest(baseDescription + str(tType), c.validateType(tType))

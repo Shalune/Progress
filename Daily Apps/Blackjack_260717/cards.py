@@ -1,6 +1,8 @@
 
 cardsuits = {"c" : "clubs", "d" : "diamonds", "h" : "hearts", "s" : "spades"}
-cardvalues = {"ace" : 1, "ace" : 11, "jack" : 10, "queen" : 10, "king" : 10}
+cardvalues = {"ace" : 1, "jack" : 10, "queen" : 10, "king" : 10}
+#todo ace 11 value
+
 
 class Card:
     suit = None
