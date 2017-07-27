@@ -2,13 +2,16 @@ from Blackjack_260717 import cards
 from Blackjack_260717 import deck
 
 yesno = {"y" : True, "n" : False}
+hitstay = {"hit" : True, "stay" : False}
+
 playAgainPrompt = "Would you like you play another hand? (y/n)\n"
 invalidYNOptionPrompt = "That's not a valid option, enter y or n \n\n"
 statusPlayerHandText = "You are currently holding:\n"
 statusDealerShowingText = "The dealer is currently showing\n"
 playerTurnPrompt = "Would you like to hit or stay?\nType \"hit\" or \"stay\"\n"
 invalidPlayOptionPrompt = "That's not a valid option."
-hitstay = {"hit" : True, "stay" : False}
+playerHandBustText = "Bust!\nYour hand is over 21. Dealer wins.\n"
+TEMPplayer21Win = "21!\nYou win!\n"
 
 maxHandScore = 21
 
@@ -35,12 +38,17 @@ def playOneHand(playDeck):
     dealerHand = drawNewHand(playDeck)
     while(True):
         printGameStatus(playerHand, dealerHand)
-        print("score1 = " + str(scoreHand(playerHand)))
-        print("score2 = " + str(scoreHand(playerHand, True)))
         if not playerHits(playerHand):
             break
         playerHand.append(playDeck.drawCard())
-        #inform if loss
+        print("TEMP - drew card")
+        printGameStatus(playerHand, dealerHand)
+        if handOverMax(playerHand):
+            print(playerHandBustText)
+            return
+        elif scoreHand(playerHand, True) == maxHandScore:
+            print(TEMPplayer21Win)
+            return
 
 
 def drawNewHand(playDeck):
@@ -91,6 +99,10 @@ def scoreHand(hand, finalScoring = False):
             else:
                 break
         return final
+
+
+def handOverMax(hand):
+    return scoreHand(hand) > maxHandScore
 
 
 if __name__ == "__main__":
