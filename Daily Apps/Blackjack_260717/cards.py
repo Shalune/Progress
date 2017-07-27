@@ -13,10 +13,21 @@ class Card:
         self.type = type
 
 
-
+    def validateType(self, type):
+        try:
+            int(type)
+            return True
+        except ValueError:
+            return self.specialType(type)
 
 
     def value(self):
+        if self.specialType(self.type):
+            return cardvalues[self.type]
+        return int(self.type)
+
+
+    def specialType(self, type):
         if type in cardvalues:
-            return cardvalues[type]
-        return int(type)
+            return True
+        return False
