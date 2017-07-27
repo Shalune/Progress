@@ -10,20 +10,20 @@ class Deck:
 
     def __init__(self, numPacks = 1):
         self.numPacks = numPacks
-        self.createPacks()
+        self.createPacks(numPacks)
 
 
     def createPacks(self, numPacks = 0):
         if numPacks == 0:
             numPacks = self.numPacks
-        for i in range(1, numPacks):
+        for i in range(0, numPacks):
             self.createOnePack()
 
     def createOnePack(self):
         for suit in cards.cardsuits:
             for type in cards.cardvalues:
                 self.cards.append(cards.Card(suit, type))
-            for type in range(2,10):
+            for type in range(2,11):
                 self.cards.append(cards.Card(suit, type))
 
 

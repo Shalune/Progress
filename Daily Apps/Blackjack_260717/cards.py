@@ -41,4 +41,4 @@ class Card:
         return suit in cardsuits
 
     def name(self):
-        return str(type) + " of " + cardsuits[self.suit]
+        return str(self.type) + " of " + str(self.suit)
