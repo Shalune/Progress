@@ -22,15 +22,15 @@ class Deck:
     def createOnePack(self):
         for suit in cards.cardsuits:
             for type in cards.cardvalues:
-                self.cards.add(cards.Card(suit, type))
+                self.cards.append(cards.Card(suit, type))
             for type in range(2,10):
-                self.cards.add(cards.Card(suit, type))
+                self.cards.append(cards.Card(suit, type))
 
 
     def drawCard(self):
         drawnCard = random.choice(self.cards)
         self.cards.remove(drawnCard)
-        self.drawnCards.add(drawnCard)
+        self.drawnCards.append(drawnCard)
         return drawnCard
 
 
