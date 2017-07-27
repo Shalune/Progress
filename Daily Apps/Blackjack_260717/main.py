@@ -10,12 +10,16 @@ playerTurnPrompt = "Would you like to hit or stay?\nType \"hit\" or \"stay\"\n"
 invalidPlayOptionPrompt = "That's not a valid option."
 hitstay = {"hit" : True, "stay" : False}
 
+maxHandScore = 21
+
+
 def main():
     playDeck = deck.Deck()
     while(True):
         playOneHand(playDeck)
         if not checkPlayAgain():
             return
+
 
 def checkPlayAgain():
     while(True):
@@ -31,6 +35,8 @@ def playOneHand(playDeck):
     dealerHand = drawNewHand(playDeck)
     while(True):
         printGameStatus(playerHand, dealerHand)
+        print("score1 = " + str(scoreHand(playerHand)))
+        print("score2 = " + str(scoreHand(playerHand, True)))
         if not playerHits(playerHand):
             break
         playerHand.append(playDeck.drawCard())
@@ -50,6 +56,7 @@ def printGameStatus(playerHand, dealerHand = None):
         print(statusDealerShowingText)
         for i in range(1,len(dealerHand)):
             print(dealerHand[i].name())
+        print("\n")
     print(statusPlayerHandText)
     for c in playerHand:
         print(c.name())
@@ -63,6 +70,27 @@ def playerHits(playerHand):
             return hitstay[selection]
         else:
             print(invalidPlayOptionPrompt)
+
+
+def scoreHand(hand, finalScoring = False):
+    numAces = 0
+    total = 0
+    for c in hand:
+        if c.type == cards.acename and finalScoring:
+            numAces += 1
+            total += 1
+        else:
+            total += c.value()
+    if not finalScoring or numAces == 0:
+        return total
+    else:
+        final = total
+        for i in range(1,numAces):
+            if(final + cards.acebonusvalue <= maxHandScore):
+                final += cards.acebonusvalue
+            else:
+                break
+        return final
 
 
 if __name__ == "__main__":
