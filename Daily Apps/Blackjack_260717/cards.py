@@ -7,7 +7,7 @@ class Card:
     type = None
 
 
-    def __init__(self, suit, type):
+    def __init__(self, suit = "s", type = "ace"):
         if self.validateType(type) and self.validateSuit(suit):
             self.suit = cardsuits[suit]
             self.type = type
@@ -18,8 +18,9 @@ class Card:
 
     def validateType(self, type):
         try:
-            int(type)
-            return True
+            if 2 <= int(type) <= 10:
+                return True
+            return False
         except ValueError:
             return self.specialType(type)
 
