@@ -1,7 +1,7 @@
 
 cardsuits = {"c" : "clubs", "d" : "diamonds", "h" : "hearts", "s" : "spades"}
 cardvalues = {"ace" : 1, "jack" : 10, "queen" : 10, "king" : 10}
-#todo ace 11 value
+acebonusvalue = 10
 
 
 class Card:

@@ -6,6 +6,9 @@ playAgainPrompt = "Would you like you play another hand? (y/n)\n"
 invalidYNOptionPrompt = "That's not a valid option, enter y or n \n\n"
 statusPlayerHandText = "You are currently holding:\n"
 statusDealerShowingText = "The dealer is currently showing\n"
+playerTurnPrompt = "Would you like to hit or stay?\nType \"hit\" or \"stay\"\n"
+invalidPlayOptionPrompt = "That's not a valid option."
+hitstay = {"hit" : True, "stay" : False}
 
 def main():
     playDeck = deck.Deck()
@@ -25,7 +28,13 @@ def checkPlayAgain():
 
 def playOneHand(playDeck):
     playerHand = drawNewHand(playDeck)
-    printGameStatus(playerHand)
+    dealerHand = drawNewHand(playDeck)
+    while(True):
+        printGameStatus(playerHand, dealerHand)
+        if not playerHits(playerHand):
+            break
+        playerHand.append(playDeck.drawCard())
+        #inform if loss
 
 
 def drawNewHand(playDeck):
@@ -44,6 +53,16 @@ def printGameStatus(playerHand, dealerHand = None):
     print(statusPlayerHandText)
     for c in playerHand:
         print(c.name())
+    print("\n")
+
+
+def playerHits(playerHand):
+    while (True):
+        selection = str.lower(input(playerTurnPrompt))
+        if selection in hitstay:
+            return hitstay[selection]
+        else:
+            print(invalidPlayOptionPrompt)
 
 
 if __name__ == "__main__":
