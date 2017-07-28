@@ -14,7 +14,13 @@ playerTurnPrompt = "Would you like to hit or stay?\nType \"hit\" or \"stay\"\n"
 invalidPlayOptionPrompt = "That's not a valid option."
 playerHandBustText = "Bust!\nYour hand is over 21. Dealer wins.\n"
 dealerHitsText = "Dealer hits.\n\n"
-TEMPplayer21Win = "21!\nYou win!\n"
+dealerBustText = "Dealer went bust. You win!\n\n"
+
+gameEndText1 = "The game is over. Your hand = "
+gameEndText2 = "   Dealer's hand = "
+gameEndText3 = "\n\n"
+playerWinText = "You won!\n\n"
+dealerWinText = "Dealer wins.\n\n"
 
 maxHandScore = 21
 
@@ -42,6 +48,13 @@ def playOneHand(playDeck):
     continueGame = playerTurn(playDeck, playerHand, dealerHand)
     if continueGame:
         dealerLost = not dealerTurn(playDeck, playerHand, dealerHand)
+        printGameStatus(playerHand, dealerHand)
+        if dealerLost:
+            print(dealerBustText)
+        else:
+            endHand(playerHand, dealerHand)
+    else:
+        print(playerHandBustText)
 
 
 def playerTurn(playDeck, playerHand, dealerHand):
@@ -52,7 +65,6 @@ def playerTurn(playDeck, playerHand, dealerHand):
         playerHand.append(playDeck.drawCard())
         print("TEMP - drew card")
         if handOverMax(playerHand):
-            print(playerHandBustText)
             return False
     return True
 
@@ -71,6 +83,16 @@ def dealerTurn(playDeck, playerHand, dealerHand):
 def dealerHits(playDeck, dealerHand):
     print (dealerHitsText)
     dealerHand.append(playDeck.drawCard())
+
+
+def endHand(playerHand, dealerHand):
+    playerScore = scoreHand(playerHand, True)
+    dealerScore = scoreHand(dealerHand, True)
+    print(gameEndText1 + str(playerScore) + gameEndText2 + str(dealerScore) + gameEndText3)
+    if playerScore > dealerScore:
+        print(playerWinText)
+    else:
+        print(dealerWinText)
 
 
 
