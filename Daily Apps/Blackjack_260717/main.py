@@ -1,5 +1,6 @@
 from Blackjack_260717 import cards
 from Blackjack_260717 import deck
+from Blackjack_260717 import controlmethods
 
 yesno = {"y" : True, "n" : False}
 hitstay = {"hit" : True, "stay" : False}
@@ -60,7 +61,7 @@ def playOneHand(playDeck):
 def playerTurn(playDeck, playerHand, dealerHand):
     while (True):
         printGameStatus(playerHand, dealerHand)
-        if not playerHits(playerHand):
+        if not playerHits(playerHand, dealerHand):
             return True
         playerHand.append(playDeck.drawCard())
         print("TEMP - drew card")
@@ -80,6 +81,10 @@ def dealerTurn(playDeck, playerHand, dealerHand):
     return True
 
 
+def playerHits(playerHand, dealerHand):
+    return controlmethods.inputPlayerHits(playerHand, dealerHand, hitstay, playerTurnPrompt, invalidPlayOptionPrompt)
+
+
 def dealerHits(playDeck, dealerHand):
     print (dealerHitsText)
     dealerHand.append(playDeck.drawCard())
@@ -93,7 +98,6 @@ def endHand(playerHand, dealerHand):
         print(playerWinText)
     else:
         print(dealerWinText)
-
 
 
 def drawNewHand(playDeck):
@@ -114,15 +118,6 @@ def printGameStatus(playerHand, dealerHand = None):
     for c in playerHand:
         print(c.name())
     print("\n")
-
-
-def playerHits(playerHand):
-    while (True):
-        selection = str.lower(input(playerTurnPrompt))
-        if selection in hitstay:
-            return hitstay[selection]
-        else:
-            print(invalidPlayOptionPrompt)
 
 
 def scoreHand(hand, finalScoring = False):
