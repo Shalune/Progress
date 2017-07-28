@@ -4,6 +4,8 @@ from Blackjack_260717 import deck
 yesno = {"y" : True, "n" : False}
 hitstay = {"hit" : True, "stay" : False}
 
+dealerHitsOn = 16
+
 playAgainPrompt = "Would you like you play another hand? (y/n)\n"
 invalidYNOptionPrompt = "That's not a valid option, enter y or n \n\n"
 statusPlayerHandText = "You are currently holding:\n"
@@ -11,6 +13,7 @@ statusDealerShowingText = "The dealer is currently showing\n"
 playerTurnPrompt = "Would you like to hit or stay?\nType \"hit\" or \"stay\"\n"
 invalidPlayOptionPrompt = "That's not a valid option."
 playerHandBustText = "Bust!\nYour hand is over 21. Dealer wins.\n"
+dealerHitsText = "Dealer hits.\n\n"
 TEMPplayer21Win = "21!\nYou win!\n"
 
 maxHandScore = 21
@@ -36,19 +39,39 @@ def checkPlayAgain():
 def playOneHand(playDeck):
     playerHand = drawNewHand(playDeck)
     dealerHand = drawNewHand(playDeck)
-    while(True):
+    continueGame = playerTurn(playDeck, playerHand, dealerHand)
+    if continueGame:
+        dealerLost = not dealerTurn(playDeck, playerHand, dealerHand)
+
+
+def playerTurn(playDeck, playerHand, dealerHand):
+    while (True):
         printGameStatus(playerHand, dealerHand)
         if not playerHits(playerHand):
-            break
+            return True
         playerHand.append(playDeck.drawCard())
         print("TEMP - drew card")
-        printGameStatus(playerHand, dealerHand)
         if handOverMax(playerHand):
             print(playerHandBustText)
-            return
-        elif scoreHand(playerHand, True) == maxHandScore:
-            print(TEMPplayer21Win)
-            return
+            return False
+    return True
+
+
+def dealerTurn(playDeck, playerHand, dealerHand):
+    while (True):
+        if scoreHand(dealerHand, True) <= dealerHitsOn or scoreHand(dealerHand) <= dealerHitsOn:
+            dealerHits(playDeck, dealerHand)
+            if handOverMax(dealerHand):
+                return False
+        else:
+            return True
+    return True
+
+
+def dealerHits(playDeck, dealerHand):
+    print (dealerHitsText)
+    dealerHand.append(playDeck.drawCard())
+
 
 
 def drawNewHand(playDeck):
