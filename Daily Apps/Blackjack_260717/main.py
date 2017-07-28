@@ -4,6 +4,7 @@ from Blackjack_260717 import controlmethods
 
 yesno = {"y" : True, "n" : False}
 hitstay = {"hit" : True, "stay" : False}
+controlTypes = {"input" : "inputPlayerHits", "house" : "housePlayerHits", "ai" : "aiPlayerHits"}
 
 dealerHitsOn = 16
 
@@ -23,6 +24,11 @@ gameEndText3 = "\n\n"
 playerWinText = "You won!\n\n"
 dealerWinText = "Dealer wins.\n\n"
 
+textPackage = {"playAgainPrompt" : playAgainPrompt, "invalidYNOptionPrompt" : invalidYNOptionPrompt, "statusPlayerHandText": statusPlayerHandText,
+               "statusDealerShowingText" : statusDealerShowingText, "playerTurnPrompt" : playerTurnPrompt,
+               "invalidPlayOptionPrompt" :  invalidPlayOptionPrompt, "playerHandBustText" : playerHandBustText,
+               "dealerHitsText" : dealerHitsText, "dealerBustText": dealerBustText}
+
 maxHandScore = 21
 
 
@@ -32,6 +38,10 @@ def main():
         playOneHand(playDeck)
         if not checkPlayAgain():
             return
+
+
+def thingy():
+    print ("we done did it")
 
 
 def checkPlayAgain():
@@ -46,43 +56,36 @@ def checkPlayAgain():
 def playOneHand(playDeck):
     playerHand = drawNewHand(playDeck)
     dealerHand = drawNewHand(playDeck)
-    continueGame = playerTurn(playDeck, playerHand, dealerHand)
+    continueGame = playTurn(playDeck, playerHand, dealerHand, "input")
     if continueGame:
-        dealerLost = not dealerTurn(playDeck, playerHand, dealerHand)
-        printGameStatus(playerHand, dealerHand)
-        if dealerLost:
-            print(dealerBustText)
-        else:
-            endHand(playerHand, dealerHand)
+        dealerTurn(playDeck, playerHand, dealerHand, "house")
     else:
         print(playerHandBustText)
 
 
-def playerTurn(playDeck, playerHand, dealerHand):
+def playTurn(playDeck, hand, otherHand, control):
     while (True):
-        printGameStatus(playerHand, dealerHand)
-        if not playerHits(playerHand, dealerHand):
+        printGameStatus(hand, otherHand)
+        if not doesHit(hand, otherHand, control):
             return True
-        playerHand.append(playDeck.drawCard())
-        print("TEMP - drew card")
-        if handOverMax(playerHand):
+        hand.append(playDeck.drawCard())
+        if handOverMax(hand):
             return False
     return True
 
 
 def dealerTurn(playDeck, playerHand, dealerHand):
-    while (True):
-        if scoreHand(dealerHand, True) <= dealerHitsOn or scoreHand(dealerHand) <= dealerHitsOn:
-            dealerHits(playDeck, dealerHand)
-            if handOverMax(dealerHand):
-                return False
-        else:
-            return True
-    return True
+    dealerLost = not playTurn(playDeck, dealerHand, playerHand)
+    printGameStatus(playerHand, dealerHand)
+    if dealerLost:
+        print(dealerBustText)
+    else:
+        endHand(playerHand, dealerHand)
 
 
-def playerHits(playerHand, dealerHand):
-    return controlmethods.inputPlayerHits(playerHand, dealerHand, hitstay, playerTurnPrompt, invalidPlayOptionPrompt)
+def doesHit(hand, otherHand, control):
+    #return controlmethods.inputPlayerHits(hand, otherHand, hitstay, playerTurnPrompt, invalidPlayOptionPrompt)
+    return getattr(controlmethods, controlTypes[control])(hand, otherHand, hitstay, textPackage)
 
 
 def dealerHits(playDeck, dealerHand):
