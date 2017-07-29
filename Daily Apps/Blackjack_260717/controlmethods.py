@@ -1,7 +1,9 @@
+from Blackjack_260717.main import scoreHand
+
+dealerHitsOn = 16
 
 
-
-def inputPlayerHits(playerHand, dealerHand, hitstay, textPackage):
+def inputPlayerHits(hand, otherHand, hitstay, textPackage):
     while (True):
         selection = str.lower(input(textPackage["playerTurnPrompt"]))
         if selection in hitstay:
@@ -9,17 +11,8 @@ def inputPlayerHits(playerHand, dealerHand, hitstay, textPackage):
         else:
             print(textPackage["invalidPlayOptionPrompt"])
 
-def housePlayerHits(playerHand, dealerHand, hitstay, textPackage):
-    while (True):
-        if selection in hitstay:
-            return hitstay[selection]
-        else:
-            print(textPackage["invalidPlayOptionPrompt"])
+def housePlayerHits(hand, otherHand, hitstay, textPackage):
+    return scoreHand(hand) <= dealerHitsOn
 
-def aiPlayerHits(playerHand, dealerHand, hitstay, textPackage):
-    while (True):
-        selection = str.lower(input(textPackage["playerTurnPrompt"]))
-        if selection in hitstay:
-            return hitstay[selection]
-        else:
-            print(textPackage["invalidPlayOptionPrompt"])
+def aiPlayerHits(hand, otherHand, hitstay, textPackage):
+    return False

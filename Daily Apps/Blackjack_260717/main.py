@@ -6,8 +6,6 @@ yesno = {"y" : True, "n" : False}
 hitstay = {"hit" : True, "stay" : False}
 controlTypes = {"input" : "inputPlayerHits", "house" : "housePlayerHits", "ai" : "aiPlayerHits"}
 
-dealerHitsOn = 16
-
 playAgainPrompt = "Would you like you play another hand? (y/n)\n"
 invalidYNOptionPrompt = "That's not a valid option, enter y or n \n\n"
 statusPlayerHandText = "You are currently holding:\n"
@@ -40,10 +38,6 @@ def main():
             return
 
 
-def thingy():
-    print ("we done did it")
-
-
 def checkPlayAgain():
     while(True):
         selection = str.lower(input(playAgainPrompt))
@@ -56,12 +50,15 @@ def checkPlayAgain():
 def playOneHand(playDeck):
     playerHand = drawNewHand(playDeck)
     dealerHand = drawNewHand(playDeck)
-    continueGame = playTurn(playDeck, playerHand, dealerHand, "input")
-    if continueGame:
-        dealerTurn(playDeck, playerHand, dealerHand, "house")
-    else:
+    playerBust = not playTurn(playDeck, playerHand, dealerHand, "input")
+    if playerBust:
         print(playerHandBustText)
-
+    else:
+        dealerBust = not playTurn(playDeck, dealerHand, playerHand, "house")
+        if dealerBust:
+            print(dealerBustText)
+        else:
+            endHand(playerHand, dealerHand)
 
 def playTurn(playDeck, hand, otherHand, control):
     while (True):
@@ -72,15 +69,6 @@ def playTurn(playDeck, hand, otherHand, control):
         if handOverMax(hand):
             return False
     return True
-
-
-def dealerTurn(playDeck, playerHand, dealerHand):
-    dealerLost = not playTurn(playDeck, dealerHand, playerHand)
-    printGameStatus(playerHand, dealerHand)
-    if dealerLost:
-        print(dealerBustText)
-    else:
-        endHand(playerHand, dealerHand)
 
 
 def doesHit(hand, otherHand, control):
@@ -94,8 +82,8 @@ def dealerHits(playDeck, dealerHand):
 
 
 def endHand(playerHand, dealerHand):
-    playerScore = scoreHand(playerHand, True)
-    dealerScore = scoreHand(dealerHand, True)
+    playerScore = scoreHand(playerHand)
+    dealerScore = scoreHand(dealerHand)
     print(gameEndText1 + str(playerScore) + gameEndText2 + str(dealerScore) + gameEndText3)
     if playerScore > dealerScore:
         print(playerWinText)
@@ -104,7 +92,6 @@ def endHand(playerHand, dealerHand):
 
 
 def drawNewHand(playDeck):
-    print("playdeck has num cards: " + str(len(playDeck.cards)))
     results = []
     results.append(playDeck.drawCard())
     results.append(playDeck.drawCard())
@@ -123,7 +110,7 @@ def printGameStatus(playerHand, dealerHand = None):
     print("\n")
 
 
-def scoreHand(hand, finalScoring = False):
+def scoreHand(hand, finalScoring = True):
     numAces = 0
     total = 0
     for c in hand:
@@ -134,9 +121,9 @@ def scoreHand(hand, finalScoring = False):
             total += c.value()
     if not finalScoring or numAces == 0:
         return total
-    else:
+    if finalScoring:
         final = total
-        for i in range(1,numAces):
+        for i in range(0,numAces):
             if(final + cards.acebonusvalue <= maxHandScore):
                 final += cards.acebonusvalue
             else:
@@ -145,7 +132,7 @@ def scoreHand(hand, finalScoring = False):
 
 
 def handOverMax(hand):
-    return scoreHand(hand) > maxHandScore
+    return scoreHand(hand, False) > maxHandScore
 
 
 if __name__ == "__main__":
