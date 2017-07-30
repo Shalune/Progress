@@ -6,6 +6,7 @@ import copy
 
 dealerHitsOn = 16
 assumeStayMinimum = 17
+assumeAceHighMax = 5
 
 
 def inputPlayerHits(playDeck, hand, otherHand, hitstay, textPackage):
@@ -25,7 +26,7 @@ def aiPlayerHits(playDeck,hand, otherHand, hitstay, textPackage):
     unseen = unseenCards(playDeck, otherHand)
     avgLow = averageOnHit(unseen, False)
     avgHigh = averageOnHit(unseen, True)
-    #estimate opponent's score
+    estOtherScore = estimateOpponentsHand(unseen, otherHand)
     #hit if average hit + hand value > other hand and less than equal 21
 
 
@@ -50,14 +51,37 @@ def averageOnHit(testCards, acesHigh):
 
 def estimateOpponentsHand(unseen, otherHand):
     showingValue = 0
+    numAces = 0
     for c in otherHand:
         if not c == otherHand[0]:
             showingValue += c.value()
+            if(c.type == cards.acename):
+                numAces += 1
+
     estimateHidden = 0
     num = 0
     for c in unseen:
-        if maxHandScore > c.value + showingValue > assumeStayMinimum:
+        if includeInEstimation(c, showingValue, numAces):
             estimateHidden += c.value
+            num += 1
+        elif includeAceBonusInEstimation(c, showingValue, numAces):
+            estimateHidden += c.value + cards.acebonusvalue
             num += 1
     estimateHidden /= num
     return estimateHidden + showingValue
+
+
+def includeInEstimation(c, showingValue, numAces):
+    if maxHandScore > c.value + showingValue > assumeStayMinimum:
+        return True
+    if maxHandScore > c.value + showingValue + (cards.acebonusvalue * numAces) > assumeStayMinimum:
+        return True
+    return False
+
+def includeAceBonusInEstimation(c, showingValue, numAces):
+    if c.type == cards.acename:
+        if maxHandScore > c.value + cards.acebonusvalue + showingValue > assumeStayMinimum:
+            return True
+        if maxHandScore > c.value + cards.acebonusvalue + showingValue + (cards.acebonusvalue * numAces) > assumeStayMinimum:
+            return True
+    return False

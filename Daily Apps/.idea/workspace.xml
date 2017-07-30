@@ -37,8 +37,8 @@
       <file leaf-file-name="controlmethods.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Blackjack_260717/controlmethods.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="732">
-              <caret line="62" column="40" lean-forward="false" selection-start-line="62" selection-start-column="40" selection-end-line="62" selection-end-column="40" />
+            <state relative-caret-position="259">
+              <caret line="51" column="44" lean-forward="false" selection-start-line="51" selection-start-column="4" selection-end-line="51" selection-end-column="44" />
               <folding>
                 <element signature="e#0#43#0" expanded="true" />
               </folding>
@@ -49,7 +49,7 @@
       <file leaf-file-name="cards.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Blackjack_260717/cards.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="561">
+            <state relative-caret-position="477">
               <caret line="33" column="17" lean-forward="true" selection-start-line="33" selection-start-column="17" selection-end-line="33" selection-end-column="17" />
               <folding />
             </state>
@@ -911,14 +911,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Blackjack_260717/cards.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="33" column="17" lean-forward="true" selection-start-line="33" selection-start-column="17" selection-end-line="33" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Blackjack_260717/main.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1275">
@@ -929,10 +921,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Blackjack_260717/cards.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="477">
+          <caret line="33" column="17" lean-forward="true" selection-start-line="33" selection-start-column="17" selection-end-line="33" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Blackjack_260717/controlmethods.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="732">
-          <caret line="62" column="40" lean-forward="false" selection-start-line="62" selection-start-column="40" selection-end-line="62" selection-end-column="40" />
+        <state relative-caret-position="259">
+          <caret line="51" column="44" lean-forward="false" selection-start-line="51" selection-start-column="4" selection-end-line="51" selection-end-column="44" />
           <folding>
             <element signature="e#0#43#0" expanded="true" />
           </folding>
