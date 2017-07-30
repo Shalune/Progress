@@ -63,7 +63,7 @@ def playOneHand(playDeck):
 def playTurn(playDeck, hand, otherHand, control):
     while (True):
         printGameStatus(hand, otherHand)
-        if not doesHit(hand, otherHand, control):
+        if not doesHit(playDeck, hand, otherHand, control):
             return True
         hand.append(playDeck.drawCard())
         if handOverMax(hand):
@@ -71,9 +71,9 @@ def playTurn(playDeck, hand, otherHand, control):
     return True
 
 
-def doesHit(hand, otherHand, control):
+def doesHit(playDeck, hand, otherHand, control):
     #return controlmethods.inputPlayerHits(hand, otherHand, hitstay, playerTurnPrompt, invalidPlayOptionPrompt)
-    return getattr(controlmethods, controlTypes[control])(hand, otherHand, hitstay, textPackage)
+    return getattr(controlmethods, controlTypes[control])(playDeck, hand, otherHand, hitstay, textPackage)
 
 
 def dealerHits(playDeck, dealerHand):
