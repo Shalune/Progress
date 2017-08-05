@@ -42,6 +42,7 @@ def getColor(input):
     else:
         return getHexColor(input)
 
+
 def getRGBColor(input):
     input.replace(',','')
     return input.split(',')
@@ -75,12 +76,18 @@ def analyzeSaturation(colorVec):
     magnitude = (vectorMagnitude(colorVec) / RGBscale) * 100
     return saturationPrefix + str(math.floor(magnitude)) + '%'
 
+
 def analyzeLightness(color):
+    value = colorLightness(color)
+    return lightnessPrefix + str(value * 100) + '%'
+
+
+def colorLightness(color):
     total = 0
     for c in color:
         total += int(c)
-    value = (total/3)/RGBscale*100
-    return lightnessPrefix + str(value) + '%'
+    value = (total / 3) / RGBscale
+    return value
 
 
 def analyzeHue(color, colorVec):
@@ -95,9 +102,10 @@ def analyzeHue(color, colorVec):
     return huePrefix + closestColor
 
 def colorToVector(color):
-    result = [0,0]
+    result = [0,0,0]
     result[0] = colorVectorX(color)
     result[1] = colorVectorY(color)
+    result[2] = colorVectorZ(color)
     return result
 
 
@@ -108,6 +116,9 @@ def colorVectorX(color):
 def colorVectorY(color):
     return (redVector()[1] * int(color[0])) + (greenVector()[1] * int(color[1])) + (blueVector()[1] * int(color[2]))
 
+
+def colorVectorZ(color):
+    return colorLightness(color)
 
 def redVector():
     return [0,1]
