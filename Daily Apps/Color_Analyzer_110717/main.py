@@ -1,4 +1,5 @@
 from Color_Analyzer_110717.lina import *
+from Color_Analyzer_110717.palette import *
 from tkinter import *
 import math
 import numpy
@@ -11,6 +12,7 @@ hexToDecimal = {'1' : '1', '2' : '2', '3' : '3', '4' : '4',
 huePrefix = 'hue = '
 lightnessPrefix = 'lightness = '
 saturationPrefix = 'saturation = '
+#palettePrefix
 colorNameVectorPairs = {'Red' : lambda: redVector(), 'Blue' : lambda: blueVector(), 'Green' : lambda: greenVector(),
                         'Purple' : lambda: purpleVector(), 'Orange' : lambda: orangeVector(), 'Yellow' : lambda: yellowVector()}
 RGBscale = 255
@@ -68,7 +70,8 @@ def analyzeColor(color, results):
     colorVec = colorToVector(color)
     output = analyzeHue(color, colorVec) + "\n"
     output += analyzeLightness(color) + "\n"
-    output += analyzeSaturation(colorVec)
+    output += analyzeSaturation(colorVec) + "\n"
+    output += generatePalette(colorVec)
     results['text'] = output
 
 
@@ -101,6 +104,13 @@ def analyzeHue(color, colorVec):
             closestColor = name
     return huePrefix + closestColor
 
+
+def generatePalette():
+    #get set of colors from palette
+    #print colors with palette prefix
+    return
+
+
 def colorToVector(color):
     result = [0,0,0]
     result[0] = colorVectorX(color)
@@ -118,7 +128,9 @@ def colorVectorY(color):
 
 
 def colorVectorZ(color):
+    #find min and return
     return colorLightness(color)
+
 
 def redVector():
     return [0,1]
