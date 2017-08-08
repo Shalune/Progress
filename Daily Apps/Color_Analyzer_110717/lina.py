@@ -7,7 +7,7 @@ def normalizeVector(x, y):
 
 
 def dotProduct(vec1, vec2):
-    result = sum([vec1[i]*vec2[i] for i in range(len(vec1))])
+    result = sum([vec1[i]*vec2[i] for i in range(len(vec1)-1)])
     return result
 
 
