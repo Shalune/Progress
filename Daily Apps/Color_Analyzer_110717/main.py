@@ -12,7 +12,7 @@ hexToDecimal = {'1' : '1', '2' : '2', '3' : '3', '4' : '4',
 huePrefix = 'hue = '
 lightnessPrefix = 'lightness = '
 saturationPrefix = 'saturation = '
-#palettePrefix
+palettePrefix = 'generated palette (vector form) = '
 colorNameVectorPairs = {'Red' : lambda: redVector(), 'Blue' : lambda: blueVector(), 'Green' : lambda: greenVector(),
                         'Purple' : lambda: purpleVector(), 'Orange' : lambda: orangeVector(), 'Yellow' : lambda: yellowVector()}
 RGBscale = 255
@@ -105,10 +105,14 @@ def analyzeHue(color, colorVec):
     return huePrefix + closestColor
 
 
-def generatePalette():
+def generatePalette(colorVec):
     #get set of colors from palette
+    palette = createPalette(colorVec, PaletteType.ANALAGOUS)
     #print colors with palette prefix
-    return
+    resultString = palettePrefix + "\n"
+    for c in palette:
+        resultString += str(c) + "\n"
+    return resultString
 
 
 def colorToVector(color):
